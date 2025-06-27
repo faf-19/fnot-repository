@@ -1,7 +1,7 @@
 // API utility functions for client-side data fetching
 
 export interface Student {
-  _id?: string
+  id: string
   fullName: string
   spiritualName: string
   sex: string
@@ -16,7 +16,7 @@ export interface Student {
 }
 
 export interface AttendanceRecord {
-  _id?: string
+  id: string
   studentId: string
   date: string
   sessions: {
@@ -58,7 +58,7 @@ export const studentsApi = {
   },
 
   // Create new student
-  create: async (student: Omit<Student, "_id" | "group" | "registrationDate">) => {
+  create: async (student: Omit<Student, "id" | "group" | "registrationDate">) => {
     const response = await fetch("/api/students", {
       method: "POST",
       headers: {
@@ -103,7 +103,7 @@ export const attendanceApi = {
   },
 
   // Save single attendance record
-  save: async (attendance: Omit<AttendanceRecord, "_id">) => {
+  save: async (attendance: Omit<AttendanceRecord, "id">) => {
     const response = await fetch("/api/attendance", {
       method: "POST",
       headers: {
@@ -115,7 +115,7 @@ export const attendanceApi = {
   },
 
   // Save bulk attendance records
-  saveBulk: async (date: string, attendanceRecords: Omit<AttendanceRecord, "_id" | "date">[]) => {
+  saveBulk: async (date: string, attendanceRecords: Omit<AttendanceRecord, "id" | "date">[]) => {
     const response = await fetch("/api/attendance/bulk", {
       method: "POST",
       headers: {
