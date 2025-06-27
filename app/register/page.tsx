@@ -114,13 +114,13 @@ export default function RegisterPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="spiritualName" className="amharic-text dark:text-gray-200">
-                    የመንፈሳዊ ስም *
+                    የክርስትና ስም *
                   </Label>
                   <Input
                     id="spiritualName"
                     value={formData.spiritualName}
                     onChange={(e) => setFormData((prev) => ({ ...prev, spiritualName: e.target.value }))}
-                    placeholder="የመንፈሳዊ ስም ያስገቡ"
+                    placeholder="የክርስትና ስም ያስገቡ"
                     className="amharic-text dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                     required
                   />
@@ -183,13 +183,13 @@ export default function RegisterPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="familyName" className="amharic-text dark:text-gray-200">
-                    የአባት ስም *
+                    የወላጅ ስም *
                   </Label>
                   <Input
                     id="familyName"
                     value={formData.familyName}
                     onChange={(e) => setFormData((prev) => ({ ...prev, familyName: e.target.value }))}
-                    placeholder="የአባት ስም ያስገቡ"
+                    placeholder="የወላጅ ስም ያስገቡ"
                     className="amharic-text dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                     required
                   />

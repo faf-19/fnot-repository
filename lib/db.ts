@@ -11,25 +11,32 @@ if (!MONGODB_URI) {
  * in development. This prevents connections growing exponentially
  * during API Route usage.
  */
-let cached = global.mongoose
+// Extend the NodeJS global type to include mongoose
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: { conn: mongoose.Mongoose | null; promise: Promise<mongoose.Mongoose> | null } | undefined;
+}
 
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null }
+let cached: { conn: mongoose.Mongoose | null; promise: Promise<mongoose.Mongoose> | null };
+
+if (global.mongoose) {
+  cached = global.mongoose;
+} else {
+  cached = { conn: null, promise: null };
+  global.mongoose = cached;
 }
 
 async function dbConnect() {
-  if (cached.conn) {
+  if (cached?.conn) {
     return cached.conn
   }
 
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    }
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose
-    })
+  if (!cached!.promise) {
+    const opts: mongoose.ConnectOptions = {};
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongooseInstance) => {
+      cached.conn = mongooseInstance;
+      return mongooseInstance;
+    });
   }
 
   try {

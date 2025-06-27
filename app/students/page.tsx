@@ -103,7 +103,7 @@ export default function StudentsPage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 w-4 h-4" />
             <Input
-              placeholder="በስም፣ በመንፈሳዊ ስም ወይም በክፍል ይፈልጉ..."
+              placeholder="በስም፣ በክርስትና ስም ወይም በክፍል ይፈልጉ..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 amharic-text dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -196,7 +196,7 @@ export default function StudentsPage() {
                                 ክፍል: {student.class}
                               </p>
                               <p className="text-xs text-gray-500 dark:text-gray-400 amharic-text">
-                                የአባት ስም: {student.familyName}
+                                የወላጅ ስም: {student.familyName}
                               </p>
                             </div>
                           </div>
