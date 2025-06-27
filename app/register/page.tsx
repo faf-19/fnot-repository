@@ -74,7 +74,7 @@ export default function RegisterPage() {
         <div className="mb-6">
           <div className="flex justify-between items-center mb-4">
             <Link href="/">
-              <Button variant="outline" className="dark:border-gray-600 dark:text-gray-300">
+              <Button variant="outline" className="dark:border-gray-600 dark:text-gray-300 bg-transparent">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 <span className="amharic-text">ወደ ቤት ገጽ</span>
               </Button>

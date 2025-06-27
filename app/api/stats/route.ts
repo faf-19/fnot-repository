@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import dbConnect from "@/lib/db"
 import Student from "@/lib/models/Student"
 import Attendance from "@/lib/models/Attendance"
+import { storage } from "@/lib/storage"
 
 // GET statistics
 export async function GET() {
@@ -34,19 +35,23 @@ export async function GET() {
       },
     })
 
+    const stats = {
+      students: {
+        total: totalStudents,
+        male: maleStudents,
+        female: femaleStudents,
+        byGroup: groupStats,
+      },
+      attendance: {
+        today: todayAttendance,
+      },
+    }
+
+    const updatedStats = await storage.getSystemStats(stats)
+
     return NextResponse.json({
       success: true,
-      data: {
-        students: {
-          total: totalStudents,
-          male: maleStudents,
-          female: femaleStudents,
-          byGroup: groupStats,
-        },
-        attendance: {
-          today: todayAttendance,
-        },
-      },
+      data: updatedStats,
     })
   } catch (error) {
     console.error("Error fetching statistics:", error)
